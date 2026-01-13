@@ -3,8 +3,8 @@ import mongoose from 'mongoose'
 const connectDB = async () => {
   try {
     // Docker MongoDB 連接字符串（帶認證）
-    // 如果使用本地 MongoDB，改為：mongodb://localhost:27017/inventory_system
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://admin:password@localhost:27017/inventory_system?authSource=admin'
+    // 使用 127.0.0.1 而不是 localhost 以避免 IPv6 問題
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://admin:password@127.0.0.1:27017/inventory_system?authSource=admin'
     
     await mongoose.connect(mongoURI, {
       connectTimeoutMS: 10000,
